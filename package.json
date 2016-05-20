@@ -1,6 +1,6 @@
 {
   "name": "react-redux-terminal",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "description": "React based terminal UI component",
   "main": "index.js",
   "directories": {
