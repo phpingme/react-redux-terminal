@@ -24,7 +24,10 @@ module.exports = {
   },
   resolve: {
     alias: {
-      'react-redux-terminal': path.join(__dirname, '..', 'src'),
+      'react-redux-terminal': path.join(__dirname, '..'),
     },
+    root: [
+      path.resolve('../node_modules'),
+    ],
   },
 };

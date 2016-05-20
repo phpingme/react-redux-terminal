@@ -23,8 +23,10 @@ export default connect(
       dispatch(executeInput(input));
       dispatch(newPrompt());
       return dispatch(serverPromise(input)).then(
-        output => dispatch(recievedOutput(output)),
-        error => dispatch(recievedError(error))
+        output => output,
+        error => {
+            dispatch(recievedError(error));
+        }
       );
     },
 
