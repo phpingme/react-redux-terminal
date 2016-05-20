@@ -1,0 +1,42 @@
+{
+  "name": "react-redux-terminal",
+  "version": "0.1.0",
+  "description": "React based terminal UI component",
+  "main": "index.js",
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phpingme/react-redux-terminal.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "terminal"
+  ],
+  "author": "Seva Dolgopolov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/phpingme/react-redux-terminal/issues"
+  },
+  "homepage": "https://github.com/phpingme/react-redux-terminal#readme",
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.0.4",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.1",
+    "eslint-plugin-react": "^5.1.1"
+  }
+}
