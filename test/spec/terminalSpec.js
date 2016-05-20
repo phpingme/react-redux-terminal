@@ -1,9 +1,9 @@
 import React from 'react';
 import expect from 'expect';
-import Terminal from '../index';
 import { createStore } from 'redux';
 import TestUtils from 'react-addons-test-utils';
-import { reducer } from '../t_reducers';
+import Terminal from '../../index';
+import { reducer } from '../../t_reducers';
 
 describe('Terminal functionality', function () {
 
