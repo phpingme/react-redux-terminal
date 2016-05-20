@@ -4,7 +4,8 @@
   "description": "Example for react redux terminal",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --host 0.0.0.0 --content-base ./"
   },
   "author": "Seva Dolgopolov",
   "license": "MIT",
@@ -16,5 +17,12 @@
     "babel-preset-stage-0": "^6.5.0",
     "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.4.5",
+    "react-redux-terminal": "0.0.1",
+    "redux": "^3.5.2"
   }
 }

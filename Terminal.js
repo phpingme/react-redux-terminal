@@ -9,7 +9,7 @@ export default class Terminal extends React.Component {
   }
 
   componentDidUpdate() {
-    this.props.adjustPos(this.refs.input.innerText.length, this.refs.input.offsetWidth);
+    //this.props.adjustPos(this.refs.input.innerText.length, this.refs.input.offsetWidth);
   }
 
 
