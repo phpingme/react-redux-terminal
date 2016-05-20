@@ -8,7 +8,7 @@ import Terminal from './Terminal';
 
 export default connect(
   ({ prompt, history, input_status }) => ({ prompt, history, input_status }),
-  (dispatch, { mode }) => ({
+  (dispatch, { serverPromise }) => ({
     onChange: (e) => {
       if (e.target.value.charCodeAt() === 10) {
           e.target.value = '';
@@ -22,14 +22,10 @@ export default connect(
     onEnter: (input) => {
       dispatch(executeInput(input));
       dispatch(newPrompt());
-      return wsCallback.client(input, mode)
-      .then(
-      (output) => {
-        dispatch(recievedOutput(output));
-      },
-      (error) => {
-        dispatch(recievedError(error));
-      });
+      return dispatch(serverPromise(input)).then(
+        output => dispatch(recievedOutput(output)),
+        error => dispatch(recievedError(error))
+      );
     },
 
     toLeft: (e) => {

@@ -1,9 +1,3 @@
 {
   "extends": "eslint-config-airbnb",
-  "plugins": [
-    "mocha"
-  ],
-  "rules": {
-    "mocha/no-exclusive-tests": 2
-  },
 }

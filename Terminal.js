@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 
 
-export default class Terminal extends React.Component {
+export default class Terminal extends Component {
 
   componentDidMount() {
     this.props.lineHeight(this.refs.cursor.offsetHeight);
   }
 
   componentDidUpdate() {
-    //this.props.adjustPos(this.refs.input.innerText.length, this.refs.input.offsetWidth);
+    this.props.adjustPos(this.refs.input.innerText.length, this.refs.input.offsetWidth);
   }
 
 
@@ -24,12 +24,12 @@ export default class Terminal extends React.Component {
       cursorStyle.left = cursorLeftStack[cursorLeftPos];
     }
 
-    const cursorTop = this.props.history.length * lineHeight;
+    const cursorTop = (this.props.history.length + 1) * lineHeight;
 
     return (
       <div
         className="terminal_wrapper"
-        style={{ position: 'relative', height: 300, width: '100%', borderStyle: 'solid' }}
+        style={{ position: 'relative', height: 300, width: '100%' }}
         onClick={e => this.refs.consoleTextarea.focus(e)}
       >
         <div
@@ -100,6 +100,24 @@ export default class Terminal extends React.Component {
 }
 
 
+Terminal.propTypes = {
+  prompt: PropTypes.object.isRequired,
+  history: PropTypes.array.isRequired,
+  isActive: PropTypes.bool,
+  toDelete: PropTypes.func.isRequired,
+  toLeft: PropTypes.func.isRequired,
+  toPrev: PropTypes.func.isRequired,
+  toRight: PropTypes.func.isRequired,
+  toNext: PropTypes.func.isRequired,
+  onEnter: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  activate: PropTypes.func.isRequired,
+  deactivate: PropTypes.func.isRequired,
+  adjustPos: PropTypes.func.isRequired,
+  lineHeight: PropTypes.func.isRequired,
+};
+
+
 const History = ({ history }) => (<span>{history.map(
   (line, index) =>
     <span
@@ -108,5 +126,9 @@ const History = ({ history }) => (<span>{history.map(
       key={index}
     >{line.value}</span>
 )}</span>);
+
+History.propTypes = {
+  history: PropTypes.array.isRequired,
+};
 
 const HistoryFactory = connect(({ history }) => ({ history }))(History);

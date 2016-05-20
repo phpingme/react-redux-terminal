@@ -72,18 +72,12 @@ const injectInput = ({ cursorLeftPos, input }, action) =>
 const promptReducers = function (state = defaultPromptState, action, inputsHistory) {
   switch (action.type) {
     case ADJUST_POSITION:
-      if (!state.cursorLeftStack[action.index]) {
+      if (typeof(state.cursorLeftStack[action.index]) !== 'number') {
         const stack = state.cursorLeftStack;
         stack[action.index] = action.pos;
         return Object.assign({}, state, { cursorLeftStack: stack });
       }
-      return Object.assign({}, state, { cursorLeftStack: state.cursorLeftStack.map((pos, index) => {
-        if (action.index === index && action.pos !== pos) {
-          return action.pos;
-        }
-        return pos;
-      }),
-     });
+      return state;
     case DEACTIVATE_TERMINAL:
       return Object.assign({}, state, { isActive: false });
     case ACTIVATE_TERMINAL:

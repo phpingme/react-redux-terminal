@@ -1,4 +1,5 @@
 var webpack  = require('webpack');
+var path = require('path');
 
 module.exports = {
   entry: __dirname + '/index.js',
@@ -20,5 +21,10 @@ module.exports = {
   watchOptions: {
     poll: 1000,
     aggregateTimeout: 1000,
+  },
+  resolve: {
+    alias: {
+      'react-redux-terminal': path.join(__dirname, '..', 'src'),
+    },
   },
 };
