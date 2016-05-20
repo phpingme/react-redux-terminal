@@ -1,0 +1,110 @@
+{
+  "_args": [
+    [
+      "react-redux-terminal@0.0.3",
+      "/var/www"
+    ]
+  ],
+  "_from": "react-redux-terminal@0.0.3",
+  "_id": "react-redux-terminal@0.0.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/react-redux-terminal",
+  "_nodeVersion": "5.10.1",
+  "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/react-redux-terminal-0.0.3.tgz_1463751196633_0.9489254325162619"
+  },
+  "_npmUser": {
+    "email": "zavalit@gmail.com",
+    "name": "zavalit"
+  },
+  "_npmVersion": "3.8.3",
+  "_phantomChildren": {
+    "lodash": "4.11.1",
+    "lodash-es": "4.12.0",
+    "loose-envify": "1.1.0"
+  },
+  "_requested": {
+    "name": "react-redux-terminal",
+    "raw": "react-redux-terminal@0.0.3",
+    "rawSpec": "0.0.3",
+    "scope": null,
+    "spec": "0.0.3",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/react-redux-terminal/-/react-redux-terminal-0.0.3.tgz",
+  "_shasum": "cbcf19d60728b7a9d8b396ff17241f55c7d6c294",
+  "_shrinkwrap": null,
+  "_spec": "react-redux-terminal@0.0.3",
+  "_where": "/var/www",
+  "author": {
+    "name": "Seva Dolgopolov"
+  },
+  "bugs": {
+    "url": "https://github.com/phpingme/react-redux-terminal/issues"
+  },
+  "dependencies": {
+    "react": "^15.0.2",
+    "react-dom": "^15.0.2",
+    "react-redux": "^4.4.5",
+    "redux": "^3.5.2"
+  },
+  "description": "React based terminal UI component",
+  "devDependencies": {
+    "babel-core": "^6.9.0",
+    "babel-eslint": "^6.0.4",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.5.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "eslint": "^2.10.2",
+    "eslint-config-airbnb": "^9.0.1",
+    "eslint-plugin-import": "^1.8.0",
+    "eslint-plugin-jsx-a11y": "^1.2.1",
+    "eslint-plugin-mocha": "^2.2.0",
+    "eslint-plugin-react": "^5.1.1",
+    "expect": "^1.20.1",
+    "jsdom": "^9.1.0",
+    "mocha": "^2.4.5",
+    "react-addons-test-utils": "^15.0.2",
+    "webpack": "^1.13.1"
+  },
+  "directories": {
+    "example": "example",
+    "test": "test"
+  },
+  "dist": {
+    "shasum": "cbcf19d60728b7a9d8b396ff17241f55c7d6c294",
+    "tarball": "https://registry.npmjs.org/react-redux-terminal/-/react-redux-terminal-0.0.3.tgz"
+  },
+  "gitHead": "72387762310a7a9c2061f9f1f07796d4df2a076a",
+  "homepage": "https://github.com/phpingme/react-redux-terminal#readme",
+  "keywords": [
+    "react",
+    "redux",
+    "terminal"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "maintainers": [
+    {
+      "email": "zavalit@gmail.com",
+      "name": "zavalit"
+    }
+  ],
+  "name": "react-redux-terminal",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/phpingme/react-redux-terminal.git"
+  },
+  "scripts": {
+    "test": "mocha --compilers js:babel-register test/.setup.js test/spec/*"
+  },
+  "version": "0.0.3"
+}
