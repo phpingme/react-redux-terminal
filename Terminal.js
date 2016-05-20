@@ -76,7 +76,6 @@ export default class Terminal extends Component {
                     return this.props.onEnter(input).then(() => {
                       this.refs.input.value = '';
                       this.refs.terminal.scrollTop = this.refs.console.scrollHeight;
-                      console.log('then', arguments)
                     });
                   case 8:
                     return this.props.toDelete();

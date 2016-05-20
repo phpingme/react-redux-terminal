@@ -23,9 +23,11 @@ export default connect(
       dispatch(executeInput(input));
       dispatch(newPrompt());
       return dispatch(serverPromise(input)).then(
-        output => output,
+        output => {
+          return dispatch(recievedOutput(output))
+        },
         error => {
-            dispatch(recievedError(error));
+            dispatch(recievedError(error))
         }
       );
     },
@@ -69,3 +71,15 @@ export default connect(
     },
   })
 )(Terminal);
+
+
+function isPromise(val) {
+  return val && typeof val.then === 'function';
+}
+
+
+export const promiseMiddleware = () =>
+  (next => action =>
+    (isPromise(action)
+      ? Promise.resolve(action)
+      : next(action)));
