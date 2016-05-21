@@ -11,12 +11,12 @@ function serverCallback(input, clientCallback) {
 
   let error = null;
   let output = null;
-  const match = input.match(/echo/);
+  const match = input.match(/echo "Hello World!"/);
 
   if (match === null) {
     error = ["Sorry, but not '" + input + "', just try to output element of the $courses array from above"];
   } else {
-    output = ["Hello World"];
+    output = ['Hello World!'];
   }
 
   clientCallback(output, error);
