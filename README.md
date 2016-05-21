@@ -12,12 +12,12 @@ npm install --save react-redux-terminal
 To add it to your UI take a look at [example](https://github.com/phpingme/react-redux-terminal/tree/master/example)
 
 
- ## Basics
+## Basics
 
 In general in order to get it running you need import Terminal and it's Redux promiseMiddleware to enable a handling of client/server communication on a Promise base.
 
 ```javascript
-    import Terminal, { promiseMiddleware } from 'react-redux-terminal';
+ import Terminal, { promiseMiddleware } from 'react-redux-terminal';
 ```
 
 and provide your Server Promise implementation as a property to a ```Terminal``` component(within a redux ```Provider```)
