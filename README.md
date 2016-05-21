@@ -31,7 +31,7 @@ ReactDOM.render(
 
 implementation of ```serverPromise``` could look like this:
 ```javascript
-const serverPromiseAction = (input) => (new Promise((resolve, reject) =>
+const serverPromise = (input) => (new Promise((resolve, reject) =>
   // your serverCallback function, that handles the whole routine of taking to a server part
   (serverCallback(input, (output, error) => {
     if (error !== null) {
