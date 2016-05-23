@@ -46,9 +46,33 @@ const serverPromise = (input) => (new Promise((resolve, reject) =>
 
 ## State shape.
 
-Default state shape of terminal looks like this:
+Default state shape of terminal is the following:
 
 ```json
+{
+  "state":  {
+    "terminal":  {
+      "history":[],
+      "input_status":null,
+      "prompt_history":{"ref":0,"prompts":[]},
+      "prompt": {
+        "input":"",
+        "isActive":false,
+        "cursorLeftPos":0,
+        "cursorLeftStack":[0],
+        "lineHeight":0
+      }
+    }
+  }
+}
 
+```
 
+To append it to your existing state, you have to import it and assign like this:
+```javascript
+import { combineReducers } from 'redux';
+import { reducers as terminal } from 'react-redux-terminal/t_reducers';
+
+const existingReducers = { reduserFoo, reducerBar };
+const reducers = combineReducers(Object.assign({}, existingReducers, { terminal }));
 ```

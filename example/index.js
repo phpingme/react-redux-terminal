@@ -2,9 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Terminal, { promiseMiddleware } from 'react-redux-terminal';
 import { Provider } from 'react-redux';
-import { createStore, compose, applyMiddleware } from 'redux';
-import { reducer as terminal} from 'react-redux-terminal/t_reducers';
-import { recievedOutput } from 'react-redux-terminal/t_actions';
+import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
+import { reducers as terminal } from 'react-redux-terminal/t_reducers';
 
 
 function serverCallback(input, clientCallback) {
@@ -23,7 +22,7 @@ function serverCallback(input, clientCallback) {
 }
 
 
-const store = createStore({ terminal }, {}, compose(
+const store = createStore(combineReducers({ terminal }), {}, compose(
    applyMiddleware(promiseMiddleware),
    window.devToolsExtension ? window.devToolsExtension() : f => f
 ));
