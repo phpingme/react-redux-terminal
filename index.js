@@ -6,71 +6,85 @@ import {
 import { connect } from 'react-redux';
 import Terminal from './Terminal';
 
+export const mapDispatchToEvaluate =
+  (dispatch, { serverPromise }) => {
+    const evaluate = (input) =>
+      dispatch(serverPromise(input)).then(
+          output => dispatch(recievedOutput(output)),
+          error => dispatch(recievedError(error)));
+    return { evaluate };
+  };
+
 export default connect(
-  ({ prompt, history, input_status }) => ({ prompt, history, input_status }),
-  (dispatch, { serverPromise }) => ({
-    onChange: (e) => {
-      if (e.target.value.charCodeAt() === 10) {
+  ({ terminal }) => ({
+    prompt: terminal.prompt,
+    history: terminal.history,
+    input_status: terminal.input_status,
+  }),
+  (dispatch, { serverPromise }) => {
+    const evaluate = (input) =>
+      dispatch(serverPromise(input)).then(
+          output => dispatch(recievedOutput(output)),
+          error => dispatch(recievedError(error)));
+
+    return ({
+        onChange: (e) => {
+          if (e.target.value.charCodeAt() === 10) {
+              e.target.value = '';
+            return;
+          }
+          const tmpChar = e.target.value;
           e.target.value = '';
-        return;
-      }
-      const tmpChar = e.target.value;
-      e.target.value = '';
-      dispatch(updateInput(tmpChar));
-    },
-
-    onEnter: (input) => {
-      dispatch(executeInput(input));
-      dispatch(newPrompt());
-      return dispatch(serverPromise(input)).then(
-        output => {
-          return dispatch(recievedOutput(output))
+          dispatch(updateInput(tmpChar));
         },
-        error => {
-            dispatch(recievedError(error))
-        }
-      );
-    },
 
-    toLeft: (e) => {
-      dispatch(toLeft(e));
-    },
+        onEnter: (input) => {
+          dispatch(executeInput(input));
+          dispatch(newPrompt());
+          return evaluate(input);
+        },
 
-    toPrev: (e) => {
-      dispatch(toPrev(e));
-      dispatch(oldPropmt());
-    },
+        evaluate: evaluate,
 
-    toRight: (e) => {
-      dispatch(toRight(e));
-    },
+        toLeft: (e) => {
+          dispatch(toLeft(e));
+        },
 
-    toNext: (e) => {
-      dispatch(toNext(e));
-      dispatch(oldPropmt());
-    },
+        toPrev: (e) => {
+          dispatch(toPrev(e));
+          dispatch(oldPropmt());
+        },
 
-    adjustPos: (index, pos) => {
-      dispatch(adjustPos(index, pos));
-    },
+        toRight: (e) => {
+          dispatch(toRight(e));
+        },
 
-    activate: () => {
-      dispatch(activate());
-    },
+        toNext: (e) => {
+          dispatch(toNext(e));
+          dispatch(oldPropmt());
+        },
 
-    deactivate: () => {
-      dispatch(deactivate());
-    },
+        adjustPos: (index, pos) => {
+          dispatch(adjustPos(index, pos));
+        },
 
-    lineHeight: (height) => {
-      dispatch(lineHeight(height));
-    },
+        activate: () => {
+          dispatch(activate());
+        },
 
-    toDelete: () => {
-      dispatch(cutInput());
-    },
-  })
-)(Terminal);
+        deactivate: () => {
+          dispatch(deactivate());
+        },
+
+        lineHeight: (height) => {
+          dispatch(lineHeight(height));
+        },
+
+      toDelete: () => {
+        dispatch(cutInput());
+      },
+    });
+  })(Terminal);
 
 
 function isPromise(val) {

@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react';
-import { connect } from 'react-redux';
+import History from './History';
 
 
 export default class Terminal extends Component {
@@ -17,7 +17,7 @@ export default class Terminal extends Component {
     const { isActive, input, lineHeight, cursorLeftPos, cursorLeftStack } = this.props.prompt;
 
     let cursorClassName = 'cursor';
-    cursorClassName = + isActive ? ' cursor_active' : '';
+    cursorClassName += isActive ? ' cursor_active' : '';
 
     let cursorStyle = { position: 'absolute', opacity: 0.5 };
     if (cursorLeftPos < input.length) {
@@ -43,7 +43,7 @@ export default class Terminal extends Component {
             ref="console"
           >
             <div>
-              <HistoryFactory />
+              <History />
               <span>
                 <span ref="input" >{input}</span>
                 <span ref="cursor" style={cursorStyle} className={cursorClassName}>&nbsp;</span>
@@ -116,19 +116,3 @@ Terminal.propTypes = {
   adjustPos: PropTypes.func.isRequired,
   lineHeight: PropTypes.func.isRequired,
 };
-
-
-const History = ({ history }) => (<span>{history.map(
-  (line, index) =>
-    <span
-      style={{ display: 'block' }}
-      className={line.type}
-      key={index}
-    >{line.value}</span>
-)}</span>);
-
-History.propTypes = {
-  history: PropTypes.array.isRequired,
-};
-
-const HistoryFactory = connect(({ history }) => ({ history }))(History);

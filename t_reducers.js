@@ -107,11 +107,15 @@ const promptReducers = function (state = defaultPromptState, action, inputsHisto
 };
 
 
-export function reducer(state = {}, action) {
+export const reducers = (state = {}, action) => ({
+  history: historyReducers(state.history, action),
+  input_status: inputStatusReducers(state.input_status, action),
+  prompt_history: propmtHistoryReducers(state.prompt_history, action, state.prompt),
+  prompt: promptReducers(state.prompt, action, state.prompt_history),
+});
+
+export default function (state = {}, action) {
   return {
-    history: historyReducers(state.history, action),
-    input_status: inputStatusReducers(state.input_status, action),
-    prompt_history: propmtHistoryReducers(state.prompt_history, action, state.prompt),
-    prompt: promptReducers(state.prompt, action, state.prompt_history),
+    terminal: reducers(state.terminal, action),
   };
 }

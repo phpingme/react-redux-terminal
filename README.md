@@ -42,3 +42,13 @@ const serverPromise = (input) => (new Promise((resolve, reject) =>
 
 
 ```
+
+
+## State shape.
+
+Default state shape of terminal looks like this:
+
+```json
+
+
+```
