@@ -1,14 +1,14 @@
 import React from 'react';
 import expect from 'expect';
-import { createStore } from 'redux';
+import { createStore , combineReducers } from 'redux';
 import TestUtils from 'react-addons-test-utils';
 import Terminal from '../../index';
-import { reducer } from '../../t_reducers';
+import { reducers as terminal } from '../../t_reducers';
 
 describe('Terminal functionality', function () {
 
   const renderer = TestUtils.createRenderer();
-  const store = createStore(reducer, { prompt: { input: 'command' } });
+  const store = createStore(combineReducers({ terminal }), { terminal: { prompt: { input: 'command' } } });
   renderer.render(<Terminal store={store} />);
 
   const output = renderer.getRenderOutput();
