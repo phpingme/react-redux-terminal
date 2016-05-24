@@ -13,7 +13,7 @@ function serverCallback(input, clientCallback) {
   const match = input.match(/echo "Hello World!"/);
 
   if (match === null) {
-    error = ["Sorry, but not '" + input + "', just try to output element of the $courses array from above"];
+    error = ["Sorry, but not '" + input + "', just try to type what you see above"];
   } else {
     output = ['Hello World!'];
   }

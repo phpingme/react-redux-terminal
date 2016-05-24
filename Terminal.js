@@ -17,7 +17,7 @@ export default class Terminal extends Component {
     const { isActive, input, lineHeight, cursorLeftPos, cursorLeftStack } = this.props.prompt;
 
     let cursorClassName = 'cursor';
-    cursorClassName += isActive ? ' cursor_active' : '';
+    cursorClassName += isActive ? ' cursor-active' : '';
 
     let cursorStyle = { position: 'absolute', opacity: 0.5 };
     if (cursorLeftPos < input.length) {
@@ -28,7 +28,7 @@ export default class Terminal extends Component {
 
     return (
       <div
-        className="terminal_wrapper"
+        className="terminal-wrapper"
         style={{ position: 'relative', height: 300, width: '100%' }}
         onClick={e => this.refs.consoleTextarea.focus(e)}
       >
