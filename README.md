@@ -39,12 +39,22 @@ const serverPromise = (input) => (new Promise((resolve, reject) =>
     }
     return resolve(output);
   }))));
-
-
 ```
 
+to enable Server Promise handling by redux you have to apply ```promiseMiddleware``` imported from **react-redux-terminal**
 
-## State shape.
+```javascript
+ import Terminal, { promiseMiddleware } from 'react-redux-terminal';
+ import { createStore, compose, applyMiddleware } from 'redux';
+
+ const store = createStore(
+   reducers,
+   [ 'some provided state' ],
+   applyMiddleware(promiseMiddleware)
+ )
+```
+
+## State shape
 
 Default state shape of terminal is the following:
 
@@ -73,6 +83,6 @@ To append it to your existing state, you have to import it and assign like this:
 import { combineReducers } from 'redux';
 import { reducers as terminal } from 'react-redux-terminal/t_reducers';
 
-const existingReducers = { reduserFoo, reducerBar };
-const reducers = combineReducers(Object.assign({}, existingReducers, { terminal }));
+
+const reducers = combineReducers({ reducerFoo, reducerBar, terminal });
 ```
