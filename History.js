@@ -1,14 +1,16 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 
-const History = ({ history }) => (<span>{history.map(
+const History = ({ history }) => (<ul className="terminal-history">{history.map(
   (line, index) =>
-    <span
-      style={{ display: 'block' }}
-      className={line.type}
+    <li
+      className={line.type.replace(/_/, '-')}
       key={index}
-    >{line.value}</span>
-)}</span>);
+    >
+      <span className="history-label" />
+      <span>{line.value}</span>
+    </li>
+)}</ul>);
 
 History.propTypes = {
   history: PropTypes.array.isRequired,

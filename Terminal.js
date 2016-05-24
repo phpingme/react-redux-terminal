@@ -44,10 +44,13 @@ export default class Terminal extends Component {
           >
             <div>
               <History />
-              <span>
-                <span ref="input" >{input}</span>
-                <span ref="cursor" style={cursorStyle} className={cursorClassName}>&nbsp;</span>
-              </span>
+              <div>
+                <span ref="promptLabel" className="prompt-label"></span>
+                <span style={{ position: 'relative' }}>
+                  <span ref="input" className="input" >{input}</span>
+                  <span ref="cursor" style={cursorStyle} className={cursorClassName}>&nbsp;</span>
+                </span>
+              </div>
             </div>
           </pre>
           <div

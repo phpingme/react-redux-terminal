@@ -1,6 +1,6 @@
 import React from 'react';
 import expect from 'expect';
-import { createStore , combineReducers } from 'redux';
+import { createStore, combineReducers } from 'redux';
 import TestUtils from 'react-addons-test-utils';
 import Terminal from '../../index';
 import { reducers as terminal } from '../../t_reducers';

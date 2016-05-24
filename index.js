@@ -28,57 +28,57 @@ export default connect(
           error => dispatch(recievedError(error)));
 
     return ({
-        onChange: (e) => {
-          if (e.target.value.charCodeAt() === 10) {
-              e.target.value = '';
-            return;
-          }
-          const tmpChar = e.target.value;
-          e.target.value = '';
-          dispatch(updateInput(tmpChar));
-        },
+      onChange: (e) => {
+        if (e.target.value.charCodeAt() === 10) {
+            e.target.value = '';
+          return;
+        }
+        const tmpChar = e.target.value;
+        e.target.value = '';
+        dispatch(updateInput(tmpChar));
+      },
 
-        onEnter: (input) => {
-          dispatch(executeInput(input));
-          dispatch(newPrompt());
-          return evaluate(input);
-        },
+      onEnter: (input) => {
+        dispatch(executeInput(input));
+        dispatch(newPrompt());
+        return evaluate(input);
+      },
 
-        evaluate: evaluate,
+      evaluate: evaluate,
 
-        toLeft: (e) => {
-          dispatch(toLeft(e));
-        },
+      toLeft: (e) => {
+        dispatch(toLeft(e));
+      },
 
-        toPrev: (e) => {
-          dispatch(toPrev(e));
-          dispatch(oldPropmt());
-        },
+      toPrev: (e) => {
+        dispatch(toPrev(e));
+        dispatch(oldPropmt());
+      },
 
-        toRight: (e) => {
-          dispatch(toRight(e));
-        },
+      toRight: (e) => {
+        dispatch(toRight(e));
+      },
 
-        toNext: (e) => {
-          dispatch(toNext(e));
-          dispatch(oldPropmt());
-        },
+      toNext: (e) => {
+        dispatch(toNext(e));
+        dispatch(oldPropmt());
+      },
 
-        adjustPos: (index, pos) => {
-          dispatch(adjustPos(index, pos));
-        },
+      adjustPos: (index, pos) => {
+        dispatch(adjustPos(index, pos));
+      },
 
-        activate: () => {
-          dispatch(activate());
-        },
+      activate: () => {
+        dispatch(activate());
+      },
 
-        deactivate: () => {
-          dispatch(deactivate());
-        },
+      deactivate: () => {
+        dispatch(deactivate());
+      },
 
-        lineHeight: (height) => {
-          dispatch(lineHeight(height));
-        },
+      lineHeight: (height) => {
+        dispatch(lineHeight(height));
+      },
 
       toDelete: () => {
         dispatch(cutInput());

@@ -2,12 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Terminal, { promiseMiddleware } from 'react-redux-terminal';
 import { Provider } from 'react-redux';
+
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';
 import { reducers as terminal } from 'react-redux-terminal/t_reducers';
 
 
 function serverCallback(input, clientCallback) {
-
   let error = null;
   let output = null;
   const match = input.match(/echo "Hello World!"/);
