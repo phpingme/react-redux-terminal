@@ -9,7 +9,8 @@ import Terminal from './Terminal';
 export const mapDispatchToEvaluate =
   (dispatch, { serverPromise }) => {
     const evaluate = (input) =>
-      dispatch(serverPromise(input)).then(
+      dispatch(executeInput(serverPromise(input), input))
+        .then(
           output => dispatch(recievedOutput(output)),
           error => dispatch(recievedError(error)));
     return { evaluate };
@@ -21,13 +22,7 @@ export default connect(
     history: terminal.history,
     input_status: terminal.input_status,
   }),
-  (dispatch, { serverPromise }) => {
-    const evaluate = (input) =>
-      dispatch(serverPromise(input)).then(
-          output => dispatch(recievedOutput(output)),
-          error => dispatch(recievedError(error)));
-
-    return ({
+  (dispatch, { serverPromise }) => ({
       onChange: (e) => {
         if (e.target.value.charCodeAt() === 10) {
             e.target.value = '';
@@ -38,13 +33,17 @@ export default connect(
         dispatch(updateInput(tmpChar));
       },
 
-      onEnter: (input) => {
-        dispatch(executeInput(input));
-        dispatch(newPrompt());
-        return evaluate(input);
-      },
-
-      evaluate: evaluate,
+      onEnter: (input) =>
+        dispatch(executeInput(serverPromise(input), input))
+          .then(
+            output => {
+              dispatch(recievedOutput(output.result));
+              return dispatch(newPrompt());
+            },
+            error => {
+              dispatch(recievedError(error.result));
+              return dispatch(newPrompt());
+            }),
 
       toLeft: (e) => {
         dispatch(toLeft(e));
@@ -83,17 +82,33 @@ export default connect(
       toDelete: () => {
         dispatch(cutInput());
       },
-    });
-  })(Terminal);
+    }))(Terminal);
 
 
 function isPromise(val) {
   return val && typeof val.then === 'function';
 }
 
+const dispatchPayloadPromise = (dispatch, action) => (action.payload.then(
+    output => dispatch({
+      ...action,
+      payload: action.payload.toString(),
+      result: output,
+      success: true,
+    }),
+    error => {
+      dispatch({
+        ...action,
+        payload: action.payload.toString(),
+        result: error,
+        success: false,
+      });
+      return Promise.reject(error);
+    }
+  ));
 
-export const promiseMiddleware = () =>
-  (next => action =>
-    (isPromise(action)
-      ? Promise.resolve(action)
-      : next(action)));
+export const promiseMiddleware = ({ dispatch }) =>
+ (next => action =>
+   (isPromise(action.payload)
+     ? dispatchPayloadPromise(dispatch, action)
+     : next(action)));

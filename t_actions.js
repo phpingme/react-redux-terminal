@@ -22,13 +22,13 @@ export const TO_PREV = 'TO_PREV';
 export const TO_NEXT = 'TO_NEXT';
 export const CUT_INPUT = 'CUT_INPUT';
 
-export function executeInput(input) {
+export function executeInput(payload, input) {
   return {
     type: EXECUTE_INPUT,
+    payload,
     input,
   };
 }
-
 
 export function recievedOutput(output) {
   return {

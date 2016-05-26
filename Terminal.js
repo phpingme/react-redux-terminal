@@ -29,7 +29,7 @@ export default class Terminal extends Component {
     return (
       <div
         className="terminal-wrapper"
-        style={{ position: 'relative', height: 300, width: '100%' }}
+        style={{ position: 'relative', width: '100%' }}
         onClick={e => this.refs.consoleTextarea.focus(e)}
       >
         <div
