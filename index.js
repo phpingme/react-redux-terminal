@@ -82,33 +82,4 @@ export default connect(
       toDelete: () => {
         dispatch(cutInput());
       },
-    }))(Terminal);
-
-
-function isPromise(val) {
-  return val && typeof val.then === 'function';
-}
-
-const dispatchPayloadPromise = (dispatch, action) => (action.payload.then(
-    output => dispatch({
-      ...action,
-      payload: action.payload.toString(),
-      result: output,
-      success: true,
-    }),
-    error => {
-      dispatch({
-        ...action,
-        payload: action.payload.toString(),
-        result: error,
-        success: false,
-      });
-      return Promise.reject(error);
-    }
-  ));
-
-export const promiseMiddleware = ({ dispatch }) =>
- (next => action =>
-   (isPromise(action.payload)
-     ? dispatchPayloadPromise(dispatch, action)
-     : next(action)));
+  }))(Terminal);
