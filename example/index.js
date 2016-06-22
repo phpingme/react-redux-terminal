@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Terminal, { promiseMiddleware } from 'react-redux-terminal';
+import Terminal from 'react-redux-terminal';
+import promiseMiddleware from 'redux-payload-promise';
 import { Provider } from 'react-redux';
 
 import { createStore, compose, applyMiddleware, combineReducers } from 'redux';

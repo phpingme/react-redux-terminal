@@ -22,93 +22,65 @@ export default connect(
     history: terminal.history,
     input_status: terminal.input_status,
   }),
-  (dispatch, { serverPromise }) => ({
-      onChange: (e) => {
-        if (e.target.value.charCodeAt() === 10) {
-            e.target.value = '';
-          return;
-        }
-        const tmpChar = e.target.value;
+  (dispatch, { serverPromise, id }) => ({
+    onChange: (e) => {
+      if (e.target.value.charCodeAt() === 10) {
         e.target.value = '';
-        dispatch(updateInput(tmpChar));
-      },
+        return;
+      }
+      const tmpChar = e.target.value;
+      e.target.value = '';
+      dispatch(updateInput(tmpChar));
+    },
 
-      onEnter: (input) =>
-        dispatch(executeInput(serverPromise(input), input))
-          .then(
-            output => {
-              dispatch(recievedOutput(output.result));
-              return dispatch(newPrompt());
-            },
-            error => {
-              dispatch(recievedError(error.result));
-              return dispatch(newPrompt());
-            }),
+    onEnter: (input) =>
+      dispatch(executeInput(serverPromise(input), input))
+        .then(
+          output => {
+            dispatch(recievedOutput(output.result, id));
+            return dispatch(newPrompt());
+          },
+          error => {
+            dispatch(recievedError(error.result));
+            return dispatch(newPrompt());
+          }),
 
-      toLeft: (e) => {
-        dispatch(toLeft(e));
-      },
+    toLeft: (e) => {
+      dispatch(toLeft(e));
+    },
 
-      toPrev: (e) => {
-        dispatch(toPrev(e));
-        dispatch(oldPropmt());
-      },
+    toPrev: (e) => {
+      dispatch(toPrev(e));
+      dispatch(oldPropmt());
+    },
 
-      toRight: (e) => {
-        dispatch(toRight(e));
-      },
+    toRight: (e) => {
+      dispatch(toRight(e));
+    },
 
-      toNext: (e) => {
-        dispatch(toNext(e));
-        dispatch(oldPropmt());
-      },
+    toNext: (e) => {
+      dispatch(toNext(e));
+      dispatch(oldPropmt());
+    },
 
-      adjustPos: (index, pos) => {
-        dispatch(adjustPos(index, pos));
-      },
+    adjustPos: (index, pos) => {
+      dispatch(adjustPos(index, pos));
+    },
 
-      activate: () => {
-        dispatch(activate());
-      },
+    activate: () => {
+      dispatch(activate());
+    },
 
-      deactivate: () => {
-        dispatch(deactivate());
-      },
+    deactivate: () => {
+      dispatch(deactivate());
+    },
 
-      lineHeight: (height) => {
-        dispatch(lineHeight(height));
-      },
+    lineHeight: (height) => {
+      dispatch(lineHeight(height));
+    },
 
-      toDelete: () => {
-        dispatch(cutInput());
-      },
-    }))(Terminal);
+    toDelete: () => {
+      dispatch(cutInput());
+    },
 
-
-function isPromise(val) {
-  return val && typeof val.then === 'function';
-}
-
-const dispatchPayloadPromise = (dispatch, action) => (action.payload.then(
-    output => dispatch({
-      ...action,
-      payload: action.payload.toString(),
-      result: output,
-      success: true,
-    }),
-    error => {
-      dispatch({
-        ...action,
-        payload: action.payload.toString(),
-        result: error,
-        success: false,
-      });
-      return Promise.reject(error);
-    }
-  ));
-
-export const promiseMiddleware = ({ dispatch }) =>
- (next => action =>
-   (isPromise(action.payload)
-     ? dispatchPayloadPromise(dispatch, action)
-     : next(action)));
+  }))(Terminal);

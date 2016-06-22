@@ -1,26 +1,26 @@
-export const EXECUTE_INPUT = 'EXECUTE_INPUT';
-export const RECIEVED_OUTPUT = 'RECIEVED_OUTPUT';
-export const RECIEVED_ERROR = 'RECIEVED_ERROR';
+export const EXECUTE_INPUT = 'TERMINAL_EXECUTE_INPUT';
+export const RECIEVED_OUTPUT = 'TERMINAL_RECIEVED_OUTPUT';
+export const RECIEVED_ERROR = 'TERMINAL_RECIEVED_ERROR';
 
-export const UPDATE_INPUT = 'UPDATE_INPUT';
-export const TOGGLE_ACTIVE = 'TOGGLE_ACTIVE';
-export const CURSOR_TOP = 'CURSOR_TOP';
+export const UPDATE_INPUT = 'TERMINAL_UPDATE_INPUT';
+export const TOGGLE_ACTIVE = 'TERMINAL_TOGGLE_ACTIVE';
+export const CURSOR_TOP = 'TERMINAL_CURSOR_TOP';
 
-export const CURSOR_LEFT = 'CURSOR_LEFT';
-export const LINE_HEIGHT = 'LINE_HEIGHT';
-export const CURSOR_STATE = 'CURSOR_STATE';
-export const ADJUST_POSITION = 'ADJUST_POSITION';
+export const CURSOR_LEFT = 'TERMINAL_CURSOR_LEFT';
+export const LINE_HEIGHT = 'TERMINAL_LINE_HEIGHT';
+export const CURSOR_STATE = 'TERMINAL_CURSOR_STATE';
+export const ADJUST_POSITION = 'TERMINAL_ADJUST_POSITION';
 
-export const ACTIVATE_TERMINAL = 'ACTIVATE_TERMINAL';
-export const DEACTIVATE_TERMINAL = 'DEACTIVATE_TERMINAL';
-export const CURSOR_TO_LEFT = 'CURSOR_TO_LEFT';
-export const CURSOR_TO_RIGHT = 'CURSOR_TO_RIGHT';
+export const ACTIVATE_TERMINAL = 'TERMINAL_ACTIVATE_TERMINAL';
+export const DEACTIVATE_TERMINAL = 'TERMINAL_DEACTIVATE_TERMINAL';
+export const CURSOR_TO_LEFT = 'TERMINAL_CURSOR_TO_LEFT';
+export const CURSOR_TO_RIGHT = 'TERMINAL_CURSOR_TO_RIGHT';
 
-export const NEW_PROMPT = 'NEW_PROMPT';
-export const OLD_PROMPT = 'OLD_PROMPT';
-export const TO_PREV = 'TO_PREV';
-export const TO_NEXT = 'TO_NEXT';
-export const CUT_INPUT = 'CUT_INPUT';
+export const NEW_PROMPT = 'TERMINAL_NEW_PROMPT';
+export const OLD_PROMPT = 'TERMINAL_OLD_PROMPT';
+export const TO_PREV = 'TERMINAL_TO_PREV';
+export const TO_NEXT = 'TERMINAL_TO_NEXT';
+export const CUT_INPUT = 'TERMINAL_CUT_INPUT';
 
 export function executeInput(payload, input) {
   return {
@@ -30,10 +30,11 @@ export function executeInput(payload, input) {
   };
 }
 
-export function recievedOutput(output) {
+export function recievedOutput(output, id) {
   return {
     type: RECIEVED_OUTPUT,
     output,
+    id,
   };
 }
 

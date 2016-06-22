@@ -17,7 +17,8 @@ To add it to your UI take a look at [example](https://github.com/phpingme/react-
 In general in order to get it running you need import Terminal and it's Redux promiseMiddleware to enable a handling of client/server communication on a Promise base.
 
 ```javascript
- import Terminal, { promiseMiddleware } from 'react-redux-terminal';
+ import Terminal from 'react-redux-terminal';
+ import promiseMiddleware from 'redux-payload-promise';
 ```
 
 and provide your Server Promise implementation as a property to a ```Terminal``` component(within a redux ```Provider```)
@@ -44,7 +45,8 @@ const serverPromise = (input) => (new Promise((resolve, reject) =>
 to enable Server Promise handling by redux you have to apply ```promiseMiddleware``` imported from **react-redux-terminal**
 
 ```javascript
- import Terminal, { promiseMiddleware } from 'react-redux-terminal';
+ import Terminal from 'react-redux-terminal';
+ import promiseMiddleware from 'redux-payload-promise';
  import { createStore, compose, applyMiddleware } from 'redux';
 
  const store = createStore(
