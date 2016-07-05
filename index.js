@@ -6,15 +6,6 @@ import {
 import { connect } from 'react-redux';
 import Terminal from './Terminal';
 
-export const mapDispatchToEvaluate =
-  (dispatch, { serverPromise }) => {
-    const evaluate = (input) =>
-      dispatch(executeInput(serverPromise(input), input))
-        .then(
-          output => dispatch(recievedOutput(output)),
-          error => dispatch(recievedError(error)));
-    return { evaluate };
-  };
 
 export default connect(
   ({ terminal }) => ({
@@ -22,7 +13,10 @@ export default connect(
     history: terminal.history,
     input_status: terminal.input_status,
   }),
-  (dispatch, { serverPromise, id }) => ({
+  (dispatch, { serverPromise, id, height }) => ({
+
+    height: height === null ? 300 : height,
+
     onChange: (e) => {
       if (e.target.value.charCodeAt() === 10) {
         e.target.value = '';
@@ -75,8 +69,8 @@ export default connect(
       dispatch(deactivate());
     },
 
-    lineHeight: (height) => {
-      dispatch(lineHeight(height));
+    lineHeight: (lHeight) => {
+      dispatch(lineHeight(lHeight));
     },
 
     toDelete: () => {

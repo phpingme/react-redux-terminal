@@ -24,12 +24,15 @@ export default class Terminal extends Component {
       cursorStyle.left = cursorLeftStack[cursorLeftPos];
     }
 
-    const cursorTop = (this.props.history.length + 1) * lineHeight;
+    const cursorTop = this.refs.history
+    ? this.refs.history.offsetHeight + lineHeight
+    : lineHeight;
 
     return (
       <div
         className="terminal-wrapper"
-        style={{ position: 'relative', width: '100%' }}
+        ref="terminalWrapper"
+        style={{ position: 'relative', width: '100%', height: this.props.height }}
         onClick={e => this.refs.consoleTextarea.focus(e)}
       >
         <div
@@ -43,7 +46,7 @@ export default class Terminal extends Component {
             ref="console"
           >
             <div>
-              <History />
+              <div ref="history"><History /></div>
               <div>
                 <span ref="promptLabel" className="prompt-label"></span>
                 <span style={{ position: 'relative' }}>
@@ -104,6 +107,7 @@ export default class Terminal extends Component {
 
 
 Terminal.propTypes = {
+  height: PropTypes.number.isRequired,
   prompt: PropTypes.object.isRequired,
   history: PropTypes.array.isRequired,
   isActive: PropTypes.bool,

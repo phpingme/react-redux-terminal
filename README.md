@@ -30,7 +30,17 @@ ReactDOM.render(
 );
 ```
 
-implementation of ```serverPromise``` could look like this:
+you can also provide optional ```id``` and  ```height``` props. Like:
+```javascript
+ ...>
+   <Terminal serverPromise={serverPromise} id="some-id" height={400} />
+  <...
+```
+
+## Talking to Server
+
+In order to enable output on input you type into terminal you have to provide your own server Promise implementation.
+Implementation of ```serverPromise``` could look like this:
 ```javascript
 const serverPromise = (input) => (new Promise((resolve, reject) =>
   // your serverCallback function, that handles the whole routine of taking to a server part
